@@ -8,6 +8,7 @@ import com.ebenezer.gana.mamatasty.data.network.ErrorCode
 import com.ebenezer.gana.mamatasty.data.network.Food
 import com.ebenezer.gana.mamatasty.data.network.FoodApiService
 import com.ebenezer.gana.mamatasty.data.network.LoadingStatus
+import kotlinx.coroutines.flow.Flow
 import java.net.UnknownHostException
 
 class FoodListRepository(context: Application) {
@@ -18,7 +19,7 @@ class FoodListRepository(context: Application) {
     private val foodApiService by lazy { FoodApiService.getInstance() }
 
 
-    fun getFoodList(): LiveData<List<Food>> = foodListDao.getFoodList()
+    fun getFoodList(): Flow<List<Food>> = foodListDao.getFoodList()
 
 
     suspend fun fetchFromNetwork() =

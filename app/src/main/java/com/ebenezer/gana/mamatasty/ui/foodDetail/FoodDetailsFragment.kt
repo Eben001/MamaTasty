@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.ebenezer.gana.mamatasty.R
 import com.ebenezer.gana.mamatasty.data.network.Food
 import com.ebenezer.gana.mamatasty.databinding.FragmentFoodDetailsBinding
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class FoodDetailsFragment : Fragment() {
 
@@ -34,8 +38,11 @@ class FoodDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val id = navigationArgs.id
 
-        viewModel.getFood(id).observe(viewLifecycleOwner) { food ->
-            setData(food)
+        lifecycleScope.launch {
+            viewModel.getFood(id).catch { it.printStackTrace() }
+                .collect { food ->
+                    setData(food)
+                }
         }
     }
 

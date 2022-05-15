@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.ebenezer.gana.mamatasty.data.network.Food
 import com.ebenezer.gana.mamatasty.data.repository.FoodDetailRepository
+import kotlinx.coroutines.flow.Flow
 
 class FoodDetailViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -12,5 +13,5 @@ class FoodDetailViewModel(application: Application) : AndroidViewModel(applicati
         FoodDetailRepository(application)
 
 
-    fun getFood(id: String): LiveData<Food> = repository.getFood(id)
+    fun getFood(id: String): Flow<Food> = repository.getFood(id)
 }

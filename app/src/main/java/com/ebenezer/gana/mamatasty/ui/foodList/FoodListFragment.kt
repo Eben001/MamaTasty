@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ebenezer.gana.mamatasty.R
 import com.ebenezer.gana.mamatasty.data.network.ErrorCode
 import com.ebenezer.gana.mamatasty.data.network.Status
 import com.ebenezer.gana.mamatasty.databinding.FragmentFoodListBinding
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class FoodListFragment : Fragment() {
@@ -43,12 +47,22 @@ class FoodListFragment : Fragment() {
             }
         }
 
-        viewModel.foodList.observe(viewLifecycleOwner) {
+        lifecycleScope.launch {
+            viewModel.foodList.catch { it.printStackTrace() }
+                .collect {foodList ->
+                    (binding.rvFood.adapter as FoodListAdapter).submitList(foodList)
+                    if (foodList.isEmpty()){
+                        viewModel.fetchFromNetwork()
+                    }
+                }
+        }
+
+        /*viewModel.foodList.observe(viewLifecycleOwner) {
             (binding.rvFood.adapter as FoodListAdapter).submitList(it)
             if (it.isEmpty()) {
                 viewModel.fetchFromNetwork()
             }
-        }
+        }*/
 
         viewModel.loadingStatus.observe(viewLifecycleOwner) { loadingStatus ->
 

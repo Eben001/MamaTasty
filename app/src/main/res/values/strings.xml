@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MamaTasty</string>
+
+    <string name="content_food_image">content_food_image</string>
+    <string name="loading_status">loading status</string>
+    <string name="error_no_data">No data returned from the server. Please try again</string>
+    <string name="error_network">Error fetching data. Please try again</string>
+    <string name="unknown_error">Unknown Error %1$s</string>
+</resources>

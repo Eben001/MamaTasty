@@ -1,5 +1,5 @@
 # MamaTasty
-Meals app that fetches meals from themealdb via an API and displays in the app
+A Meals app that fetches meals from themealdb via an API and displays in the app
 
 
 ## General Information

@@ -26,7 +26,7 @@ Meals app that fetches meals from themealdb via an API and displays in the app
 - Network Error Handling
 
 ## Screenshots
-![Untitled design](https://user-images.githubusercontent.com/54691862/168500432-97ab58bd-144a-494d-8aa3-2ebb826a6eea.png)
+![Untitled design (1)](https://user-images.githubusercontent.com/54691862/168500769-eece3f03-a556-4c73-bc8e-76cc0d96203c.png)
 
 
 
